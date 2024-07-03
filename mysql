@@ -1,0 +1,35 @@
+USE DBmahasiswa;
+DROP PROCEDURE IF EXISTS sub_DBmahasiswa_sp;
+
+DELIMITER $$
+
+CREATE PROCEDURE sub_DBmahasiswa_sp(
+    IN jenis_eksekusi VARCHAR(15),
+    IN vNIM INT,
+    IN vnama_mahasiswa VARCHAR(50),
+    IN vkodeJurusan CHAR(10),
+    IN vNIP_wali VARCHAR(50),
+    IN valamat VARCHAR(50)
+)
+BEGIN
+    IF jenis_eksekusi = 'insert' THEN
+        INSERT INTO mahasiswa (NIM, nama_mahasiswa, kodeJurusan, NIP_wali, alamat)
+        VALUES (vNIM, vnama_mahasiswa, vkodeJurusan, vNIP_wali, valamat);
+    
+    ELSEIF jenis_eksekusi = 'update' THEN
+        UPDATE mahasiswa
+        SET nama_mahasiswa = vnama_mahasiswa, kodeJurusan = vkodeJurusan, NIP_wali = vNIP_wali, alamat = valamat
+        WHERE NIM = vNIM;
+    
+    ELSEIF jenis_eksekusi = 'delete' THEN
+        DELETE FROM mahasiswa
+        WHERE NIM = vNIM;
+    
+    ELSEIF jenis_eksekusi = 'select' THEN
+        SELECT * FROM mahasiswa
+        ORDER BY nama_mahasiswa;
+    
+    END IF;
+END$$
+
+DELIMITER ;

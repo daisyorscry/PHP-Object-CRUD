@@ -1,0 +1,19 @@
+{
+    "name": "php/dasar",
+    "type": "project",
+
+    "authors": [
+        {
+            "name": "daisyorscry",
+            "email": "daisyorscry@gmail.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap-icons": "^1.11"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "belajar\\php\\": "app"
+        }
+    }
+}
